@@ -177,7 +177,7 @@ void ScreenPrintf_PostInit()
 
 	InitScreenPrintf();
 
-	ScreenPrintf(-200, -200, 100.0f, 0xFFFFFFFF, "KingJack is a massive STINKER!");
+	//ScreenPrintf(-200, -200, 100.0f, 0xFFFFFFFF, "KingJack is a massive STINKER!");
 	//ScreenShadowPrintf(0, 0, "TEST TEST ONE TWO THREE");
 
 }
