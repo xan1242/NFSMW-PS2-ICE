@@ -54,6 +54,12 @@
     <ClCompile Include="FEng.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FEDatabase.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cFEngGameInterface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="linkfile">
@@ -98,6 +104,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FEng.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FEDatabase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cFEngGameInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

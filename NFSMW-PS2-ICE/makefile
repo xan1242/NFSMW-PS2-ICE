@@ -14,8 +14,10 @@ ActionQueue.c \
 Attrib.c \
 NIS.c \
 ICEManager.c \
+FEDatabase.c \
 FEng.c \
 cFEng.c \
+cFEngGameInterface.c \
 FEPackageManager.c \
 ScreenPrintf.c \
 NFSMW-ICE.c \

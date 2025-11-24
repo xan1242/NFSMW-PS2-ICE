@@ -18,7 +18,6 @@ const char* CDActionDriveStr = (const char*)0x4872B8;
 const char* CDActionDebugStr = (const char*)0x487488;
 const char* CDActionIceStr = (const char*)0x48E800;
 bool* Tweak_EnableICEAuthoring = (bool*)0x4EA82C;
-int* DoScreenPrintf = (int*)0x525DA4;
 
 ActionQueue IceInputQ;
 int DoScreenPrintf_Backup;
@@ -42,7 +41,7 @@ void EnableICEEditor(CameraAI_Director* director)
     *Tweak_EnableICEAuthoring = true;
     SetCameraAIDesiredMode(director, CDActionIceStr);
     DoScreenPrintf_Backup = *DoScreenPrintf;
-    *DoScreenPrintf = 0;
+    *DoScreenPrintf = 1;
 }
 
 void ToggleDebugCam(CameraAI_Director* director)
