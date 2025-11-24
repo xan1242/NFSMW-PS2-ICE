@@ -184,4 +184,5 @@ void NFSMW_ICE_PostInit()
 {
     LOG("NFSMW_ICE_PostInit...\n");
     CreateICEManagerActionQ();
+    ScreenPrintf_PostInit();
 }

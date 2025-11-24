@@ -9,10 +9,14 @@ EE_BIN = ../build/NFSMW-PS2-ICE.elf
 EE_OBJS = main.o \
 includes\minjector.c \
 gprintf.c \
+bWare.c \
 ActionQueue.c \
 Attrib.c \
 NIS.c \
 ICEManager.c \
+FEng.c \
+cFEng.c \
+FEPackageManager.c \
 ScreenPrintf.c \
 NFSMW-ICE.c \
 

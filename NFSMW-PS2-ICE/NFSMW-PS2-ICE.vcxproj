@@ -162,6 +162,10 @@ copy /y "$(NMakeOutput)" "!target!"
   <ItemGroup>
     <ClCompile Include="ActionQueue.c" />
     <ClCompile Include="Attrib.c" />
+    <ClCompile Include="bWare.c" />
+    <ClCompile Include="cFEng.c" />
+    <ClCompile Include="FEng.c" />
+    <ClCompile Include="FEPackageManager.c" />
     <ClCompile Include="gprintf.c" />
     <ClCompile Include="ICEManager.c" />
     <ClCompile Include="includes\minjector.c" />
@@ -177,6 +181,10 @@ copy /y "$(NMakeOutput)" "!target!"
   <ItemGroup>
     <ClInclude Include="ActionQueue.h" />
     <ClInclude Include="Attrib.h" />
+    <ClInclude Include="bWare.h" />
+    <ClInclude Include="cFEng.h" />
+    <ClInclude Include="FEng.h" />
+    <ClInclude Include="FEPackageManager.h" />
     <ClInclude Include="gprintf.h" />
     <ClInclude Include="ICEManager.h" />
     <ClInclude Include="includes\minjector.h" />
