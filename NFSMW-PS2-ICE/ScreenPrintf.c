@@ -154,6 +154,16 @@ void ScreenPrintf(int x, int y, float duration, unsigned int color, const char* 
 	va_end(args);
 }
 
+void ScreenPrintfStandard(int x, int y, const char* fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+
+	ScreenVPrintf(x, y, 0.0f, 0xFFFFFFFF, fmt, args);
+
+	va_end(args);
+}
+
 void ScreenShadowPrintf(int x, int y, const char* fmt, ...)
 {
 	va_list args;

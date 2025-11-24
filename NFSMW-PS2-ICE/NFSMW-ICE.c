@@ -19,6 +19,9 @@ const char* CDActionDebugStr = (const char*)0x487488;
 const char* CDActionIceStr = (const char*)0x48E800;
 bool* Tweak_EnableICEAuthoring = (bool*)0x4EA82C;
 
+// ICE runs at 30FPS
+const float ScreenPrintfTime = (1.0f / 30.0f);
+
 ActionQueue IceInputQ;
 int DoScreenPrintf_Backup;
 
@@ -121,6 +124,28 @@ int CheckICEEditor(int prevRet)
 //    LOG("}\n");
 //}
 
+
+void IceScrPrintf(int x, int y, const char* fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+
+    ScreenVPrintf(x, y, ScreenPrintfTime, 0xFFFFFFFF, fmt, args);
+
+    va_end(args);
+}
+
+void IceScrShadowPrintf(int x, int y, const char* fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+
+    ScreenVPrintf(x + 1, y + 1, ScreenPrintfTime, 0x80000000, fmt, args);
+    ScreenVPrintf(x, y, ScreenPrintfTime, 0xFFFFFFFF, fmt, args);
+
+    va_end(args);
+}
+
 // hooks
 void hkCameraAI_Director_SelectAction();
 #ifndef __INTELLISENSE__
@@ -184,4 +209,7 @@ void NFSMW_ICE_PostInit()
     LOG("NFSMW_ICE_PostInit...\n");
     CreateICEManagerActionQ();
     ScreenPrintf_PostInit();
+
+    minj_MakeJMPwNOP(0x16F360, (uintptr_t)&IceScrShadowPrintf);
+    minj_MakeJMPwNOP(0x16F340, (uintptr_t)&IceScrPrintf);
 }

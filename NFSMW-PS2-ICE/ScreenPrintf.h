@@ -21,6 +21,7 @@ void ScreenPrintf_PostInit();
 void ScreenVPrintf(int x, int y, float duration, unsigned int color, const char* fmt, va_list argList);
 void ScreenPrintf(int x, int y, float duration, unsigned int color, const char* fmt, ...);
 void ScreenShadowPrintf(int x, int y, const char* fmt, ...);
+void ScreenPrintfStandard(int x, int y, const char* fmt, ...);
 
 extern int* DoScreenPrintf;
 
