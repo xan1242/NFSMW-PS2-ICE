@@ -26,10 +26,7 @@ void init()
 {
     early_init();
 
-    //minj_MakeCALL(0x384440, (uintptr_t)&TestFuncHook);
-
     LOG("NFSMW-ICE Plugin Init\n");
-    //LOG("sizeof mcCarCfg: 0x%X\n", sizeof(mcCarCfg));
 
     uintptr_t pInitializeEverything = minj_GetBranchDestination(loc_2EF1FC);
     InitializeEverything = (void(*)(int, char**))(pInitializeEverything);
