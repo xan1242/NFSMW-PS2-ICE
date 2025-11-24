@@ -39,6 +39,9 @@
     <ClCompile Include="NIS.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ScreenPrintf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="linkfile">
@@ -68,6 +71,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NIS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenPrintf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

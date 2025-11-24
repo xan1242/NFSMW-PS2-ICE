@@ -5,6 +5,7 @@
 #include "Attrib.h"
 #include "ActionQueue.h"
 #include "NIS.h"
+#include "ScreenPrintf.h"
 //#include "includes/ps2timeutil.h"
 #include "includes/minjector.h"
 
@@ -173,6 +174,8 @@ void NFSMW_ICE_Init()
     minj_MakeJMPwNOP(loc_163BD4, (uintptr_t)&hkCameraAI_Director_SelectAction);
     uintptr_t loc_16881C = 0x16881C;
     minj_MakeCALL(loc_16881C, (uintptr_t)&hkCDActionIce_Construct);
+
+    ScreenPrintf_Init();
 
     //PrintActionIdEnum();
 }

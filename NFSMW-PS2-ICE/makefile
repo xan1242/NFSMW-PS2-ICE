@@ -13,6 +13,7 @@ ActionQueue.c \
 Attrib.c \
 NIS.c \
 ICEManager.c \
+ScreenPrintf.c \
 NFSMW-ICE.c \
 
 
