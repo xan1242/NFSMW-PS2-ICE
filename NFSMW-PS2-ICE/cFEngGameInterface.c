@@ -1,6 +1,7 @@
 #include "cFEngGameInterface.h"
 #include "ScreenPrintf.h"
 #include "includes/minjector.h"
+#include "NFSMW-ICE.h"
 
 void(*p_cFEngGameInterface_EndPackageRendering)(void* obj, void* pkg) = (void(*)(void*, void*))(0);
 
@@ -8,8 +9,7 @@ void cFEngGameInterface_EndPackageRendering_Hook(void* obj, void* pkg)
 {
 	const uint32_t unkconst = 0x8046C2FB;
 	uintptr_t pPkg = (uintptr_t)pkg;
-
-	if (*(uint32_t*)(pPkg + 4) == unkconst)
+	if (*(uint32_t*)(pPkg + 0x10) == unkconst)
 		ResetScreenPrintf();
 
 	return p_cFEngGameInterface_EndPackageRendering(obj, pkg);

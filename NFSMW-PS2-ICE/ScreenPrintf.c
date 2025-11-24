@@ -9,6 +9,7 @@
 #include "includes/minjector.h"
 #include <stdbool.h>
 #include <stdarg.h>
+//#include <stdio.h>
 
 const char* ScreenPrintf_FngName = (const char*)0x49C1D0;
 ScreenPrintItem ScreenPrintItemTable[SCREENPRINTF_MAXITEMS];
@@ -131,7 +132,10 @@ void ScreenVPrintf(int x, int y, float duration, unsigned int color, const char*
 	item->PosX = x;
 	item->PosY = y;
 
+	// #TODO FPU registers do NOT align in the same way as GCC!
 	bVSPrintf(tmpstr, fmt, argList);
+	//vsprintf(tmpstr, fmt, argList);
+
 	FEColor fecolor;
 	FEColor_FEColor(&fecolor, color);
 	FEObject_SetColor(item->debugString, &fecolor, false);
@@ -173,7 +177,7 @@ void ScreenPrintf_PostInit()
 
 	InitScreenPrintf();
 
-	ScreenPrintf(-200, 0, 100.0f, 0xFFFFFFFF, "TEST TEST ONE TWO THREE");
+	ScreenPrintf(-200, -200, 100.0f, 0xFFFFFFFF, "KingJack is a massive STINKER!");
 	//ScreenShadowPrintf(0, 0, "TEST TEST ONE TWO THREE");
 
 }

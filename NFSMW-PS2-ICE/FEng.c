@@ -45,7 +45,25 @@ void FEngSetVisible(void* obj)
 	return pFEngSetVisible(obj);
 }
 
+//
+// GCC from PS2SDK starts passing FPU variables from f13...
+// We need to start from f12.
+//
 void FEngSetTopLeft(void* obj, float x, float y)
 {
-	return pFEngSetTopLeft(obj, x, y);
+    asm volatile(
+        // reorder float args
+        "mov.s  $f12, $f13   \n"   // f12 = x
+        "mov.s  $f13, $f14   \n"   // f13 = y
+
+        // load the target function pointer
+        "lw     $t0, %0      \n"
+
+        // tail call directly into the function
+        "jr     $t0          \n"
+        "nop                 \n"
+        :
+    : "m"(pFEngSetTopLeft)
+        : "t0", "f12", "f13"
+        );
 }
