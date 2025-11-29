@@ -8,7 +8,6 @@
 #include "ScreenPrintf.h"
 #include "eViewPlatInterface.h"
 #include "ePoly.h"
-//#include "includes/ps2timeutil.h"
 #include "includes/minjector.h"
 
 #define BASEPOLY_HASH 0xC6AFDD7E
@@ -194,43 +193,6 @@ asm
     "jr      $ra\n"
     "nop\n"
 );
-
-//asm
-//(
-//    ".global IcePrepareSomethingForPoly\n"
-//    "IcePrepareSomethingForPoly:\n"
-//    "lwc1    $f3, 0xC($a1)\n"
-//    "addiu   $a2, $a0, 0x40\n"
-//    "lwc1    $f2, 0($a1)\n"
-//    "cvt.w.s $f3, $f3\n"
-//    "lwc1    $f1, 4($a1)\n"
-//    "cvt.w.s $f2, $f2\n"
-//    "lwc1    $f0, 8($a1)\n"
-//    "cvt.w.s $f1, $f1\n"
-//    "cvt.w.s $f0, $f0\n"
-//    "addiu   $v1, $a0, 0x43\n"
-//    "addiu   $v0, $a0, 0x42\n"
-//    "mfc1    $t2, $f2\n"
-//    "mfc1    $t1, $f1\n"
-//    "mfc1    $t0, $f0\n"
-//    "mfc1    $a3, $f3\n"
-//    "addiu   $a0, 0x41\n"
-//    "li      $a1, 3\n"
-//    "nop\n"
-//    "loc_159780:\n"
-//    "sb      $t2, 0($a2)\n"
-//    "addiu   $a1, -1\n"
-//    "sb      $t1, 0($a0)\n"
-//    "addiu   $a2, 4\n"
-//    "sb      $t0, 0($v0)\n"
-//    "addiu   $a0, 4\n"
-//    "sb      $a3, 0($v1)\n"
-//    "addiu   $v0, 4\n"
-//    "addiu   $v1, 4\n"
-//    "bgez    $a1, loc_159780\n"
-//    "jr      $ra\n"
-//    "nop\n"
-//);
 #endif
 
 unsigned int IceGetTextureID(int iceT)
