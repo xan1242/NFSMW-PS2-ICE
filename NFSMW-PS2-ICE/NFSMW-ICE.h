@@ -30,13 +30,13 @@ typedef struct _CameraAI_Director
 	uint32_t unk1;
 	ActionQueue mInputQ;
 
-}CameraAI_Director;
+} CameraAI_Director;
 
 typedef struct _vftbl
 {
     uintptr_t unk;
     uintptr_t addr;
-}vftbl;
+} vftbl;
 
 typedef struct _ICEPoly
 {

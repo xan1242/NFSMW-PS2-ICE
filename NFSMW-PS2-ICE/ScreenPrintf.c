@@ -177,17 +177,11 @@ void ScreenShadowPrintf(int x, int y, const char* fmt, ...)
 
 void ScreenPrintf_Init()
 {
-	//LOG("ScreenPrintf_Init stub...\n");
 	cFEngGameInterface_Init();
 }
 
 void ScreenPrintf_PostInit()
 {
 	*DoScreenPrintf = true;
-
 	InitScreenPrintf();
-
-	//ScreenPrintf(-200, -200, 100.0f, 0xFFFFFFFF, "KingJack is a massive STINKER!");
-	//ScreenShadowPrintf(0, 0, "TEST TEST ONE TWO THREE");
-
 }

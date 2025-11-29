@@ -155,46 +155,6 @@ void IceScrShadowPrintf(int x, int y, const char* fmt, ...)
     va_end(args);
 }
 
-void IcePolySetColorToEPoly(void* pPoly, void* pColor);
-#ifndef __INTELLISENSE__
-asm
-(
-    ".global IcePolySetColorToEPoly\n"
-    "IcePolySetColorToEPoly:\n"
-    "lwc1    $f3, 0xC($a1)\n"
-    "addiu   $a2, $a0, 0x80\n"
-    "lwc1    $f2, 0($a1)\n"
-    "cvt.w.s $f3, $f3\n"
-    "lwc1    $f1, 4($a1)\n"
-    "cvt.w.s $f2, $f2\n"
-    "lwc1    $f0, 8($a1)\n"
-    "cvt.w.s $f1, $f1\n"
-    "cvt.w.s $f0, $f0\n"
-    "addiu   $v1, $a0, 0x83\n"
-    "addiu   $v0, $a0, 0x82\n"
-    "mfc1    $t2, $f2\n"
-    "mfc1    $t1, $f1\n"
-    "mfc1    $t0, $f0\n"
-    "mfc1    $a3, $f3\n"
-    "addiu   $a0, 0x81\n"
-    "li      $a1, 3\n"
-    "nop\n"
-    "loc_159780:\n"
-    "sb      $t2, 0($a2)\n"
-    "addiu   $a1, -1\n"
-    "sb      $t1, 0($a0)\n"
-    "addiu   $a2, 4\n"
-    "sb      $t0, 0($v0)\n"
-    "addiu   $a0, 4\n"
-    "sb      $a3, 0($v1)\n"
-    "addiu   $v0, 4\n"
-    "addiu   $v1, 4\n"
-    "bgez    $a1, loc_159780\n"
-    "jr      $ra\n"
-    "nop\n"
-);
-#endif
-
 unsigned int IceGetTextureID(int iceT)
 {
     unsigned int result = 0;
@@ -218,7 +178,15 @@ unsigned int IceGetTextureID(int iceT)
     return result;
 }
 
-void IceRenderPoly(void* view, ICEPoly* pPoly, bVector4* pColor0, bVector4* pColor1, int texture, void* pLocalWorld)
+void IceSetPolyColor(unsigned char* dst, const bVector4* src)
+{
+    dst[0] = (unsigned char)(src->x);
+    dst[1] = (unsigned char)(src->y);
+    dst[2] = (unsigned char)(src->z);
+    dst[3] = (unsigned char)(src->w);
+}
+
+void IceRenderPoly(void* view, ICEPoly* pPoly, bVector4* pColor0, bVector4* pColor1, int texture/*, void* pLocalWorld*/)
 {
     ePoly outPoly;
     ePoly_ePoly(&outPoly);
@@ -230,10 +198,14 @@ void IceRenderPoly(void* view, ICEPoly* pPoly, bVector4* pColor0, bVector4* pCol
     outPoly.Vertices[1].z *= -4000.0f;
     outPoly.Vertices[2].z *= -4000.0f;
     outPoly.Vertices[3].z *= -4000.0f;
-    //poly.Vertices = pPoly->Vertices;
+    
+    // #TODO: for some reason the colors are (maybe) screwed up a bit...
+    // figure out if gcc is messing up something or if the game is overwriting the colors mid-draw OR if it's just PCSX2 messing up...
+    IceSetPolyColor(outPoly.Colours[0], pColor0);
+    IceSetPolyColor(outPoly.Colours[1], pColor1);
+    IceSetPolyColor(outPoly.Colours[2], pColor1);
+    IceSetPolyColor(outPoly.Colours[3], pColor0);
 
-
-    IcePolySetColorToEPoly(&outPoly, pColor0);
     unsigned int texID = IceGetTextureID(texture);
     void* texinfo = GetTextureInfo(texID, 1, 0);
 
