@@ -1,0 +1,127 @@
+gametitle=Need for Speed Most Wanted OPM Demo
+
+// Fix pause menu crash
+patch=1,EE,002457E8,word,0809160F
+patch=1,EE,002457EC,word,00000000
+
+[SkipFE]
+author=xan1242
+comment=If enabled, you'll go to Free Roam directly.
+patch=1,EE,00525C70,word,00000001
+// SkipFEPlayerCar
+//patch=1,EE,00525C88,word,00487608
+// SkipFERaceID
+//patch=1,EE,00525C78,double,0000312E312E3032
+//patch=1,EE,00525C80,word,00000074
+// SkipFEOpponentPresetRide
+//patch=1,EE,00525C90,word,004A2848
+// SkipFEDisableCops
+//patch=1,EE,00525CB0,word,00000001
+//copheli
+//patch=1,EE,00487608,double,00696C6568706F63
+// SkipFEOverrideStartPosition
+patch=1,EE,00525CD8,word,00525CE8
+// SkipFE X
+patch=1,EE,00525CEC,word,4546987b
+// SkipFE Y Neg
+patch=1,EE,00525CF0,word,c4e33c7b
+// SkipFE Z Neg
+patch=1,EE,00525CE8,word,c2cbc28f
+// use these with SkipFEPlayerCar
+//copmidsize
+//patch=1,EE,00487608,double,697364696D706F63
+//patch=1,EE,00487610,double,000000000000657A
+
+//speedtest
+//patch=1,EE,00487608,double,7365746465657073
+//patch=1,EE,00487610,double,0000000000000074
+
+//upgradetest
+//patch=1,EE,00487608,double,7465646172677075
+//patch=1,EE,00487610,double,0000000000747365
+
+[Skip demo bootflow]
+author=xan1242
+patch=1,EE,0024C754,word,00000000
+
+[Go to Main Menu after splash]
+author=xan1242
+patch=1,EE,00521538,word,00494F50
+
+[Disable demo timeout]
+author=xan1242
+patch=1,EE,002F2908,word,03E00008
+patch=1,EE,002F290C,word,00000000
+
+[Minimize loading screens]
+author=xan1242
+patch=1,EE,0049A080,word,00000000
+patch=1,EE,004A5DF8,word,00000000
+patch=1,EE,001ED124,word,24020001
+
+[Disable demo barriers]
+author=xan1242
+patch=1,EE,002F2208,word,080BC886
+patch=1,EE,002F220C,word,00000000
+
+[Disable motion blur (DrawSmear)]
+author=xan1242
+patch=1,EE,004FE694,word,00000000
+
+[Disable fog (eAttachFog)]
+author=xan1242
+patch=1,EE,00208D70,word,00000000
+
+[Force Rain]
+author=xan1242
+patch=1,EE,00525CF4,word,00000001
+patch=1,EE,00545EA0,word,3f800000
+
+[Replace Credits with Video options]
+author=xan1242
+patch=1,EE,002272C0,word,00000000
+patch=1,EE,002249F0,word,24040001
+patch=1,EE,002272D4,word,3C058A00
+patch=1,EE,002272D8,word,3C06E8E2
+patch=1,EE,002272E0,word,34A56328
+patch=1,EE,002272E4,word,34C64508
+
+[Sort of get Quick Races to work]
+author=xan1242
+comment=A bit broken if you back out of menus during car selection...
+// main menu thing, opm racesheet thing replace
+patch=1,EE,004A69E8,double,756E654D6E69614D
+patch=1,EE,004A69F0,double,00000000676E662E
+// car select, fix race start
+patch=1,EE,004D4F04,word,081354B6
+patch=1,EE,004D4F08,word,00000000
+// unk
+patch=1,EE,004D4F24,word,081354EB
+patch=1,EE,004D4F28,word,00000000
+
+[Skip movies]
+author=xan1242
+patch=1,EE,00525DA8,word,00000001
+
+[RightStickInFrontend]
+author=xan1242
+patch=1,EE,00525D90,word,00000001
+
+[Add Debug Car Customize]
+author=xan1242
+patch=1,EE,002247DC,word,3C0574CE
+patch=1,EE,002247E0,word,3C061AFD
+patch=1,EE,002247E8,word,34A58C0B
+patch=1,EE,002247EC,word,34C65BE6
+
+patch=1,EE,0023A600,word,0812DE5A
+patch=1,EE,0023A604,word,00000000
+
+patch=1,EE,004B7968,word,3C020052
+patch=1,EE,004B796C,word,3C05004A
+patch=1,EE,004B7970,word,8C44109C
+patch=1,EE,004B7974,word,24A5BEF0
+patch=1,EE,004B7978,word,00003021
+patch=1,EE,004B797C,word,00003821
+patch=1,EE,004B7980,word,0808D0F4
+patch=1,EE,004B7984,word,00004021
