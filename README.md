@@ -1,5 +1,6 @@
 # ICE enabler for NFS Most Wanted OPM Demo (PS2)
 ![ICESPLASH.png](img/ICESPLASH.png)
+
 This PCSX2 game plugin restores the hidden ICE editor found within the OPM demo build of NFS Most Wanted.
 
 It also adds the proper trigger for the Debug World Camera, so you can use that just like on a real debug build!
