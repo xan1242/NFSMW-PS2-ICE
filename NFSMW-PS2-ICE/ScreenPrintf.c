@@ -6,6 +6,7 @@
 #include "cFEngGameInterface.h"
 #include "bWare.h"
 #include "FEDatabase.h"
+#include "ICEManager.h"
 #include "includes/minjector.h"
 #include <stdbool.h>
 #include <stdarg.h>
@@ -88,6 +89,9 @@ void FixWidescreen(int* x)
 	if (!FEDatabase_IsWidescreen(FEDatabase_Get()))
 		return;
 
+	if (ICEManager_IsEditorOn())
+		return;
+
 	if (*x >= -10)
 	{
 		if (*x <= 10)
@@ -132,7 +136,7 @@ void ScreenVPrintf(int x, int y, float duration, unsigned int color, const char*
 	if (!*DoScreenPrintf)
 		return;
 
-	//FixWidescreen(&x);
+	FixWidescreen(&x);
 
 	if (duration != 0.0f)
         item = GetScreenPrintItemAtLocation(x, y);

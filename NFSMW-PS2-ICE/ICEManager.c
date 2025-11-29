@@ -16,6 +16,12 @@ void ICEManager_EditorOn()
     *(int*)(pTheICEManager + offMode) = 1;
 }
 
+bool ICEManager_IsEditorOn()
+{
+    const size_t offMode = 0x1B70;
+    return *(int*)(pTheICEManager + offMode) > 0;
+}
+
 void ICEManager_EditorOff()
 {
     const size_t offMode = 0x1B70;

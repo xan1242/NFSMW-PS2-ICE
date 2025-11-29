@@ -17,7 +17,7 @@
 
 #define NFSMW_OPM_DEMO_CRC 0x61D112E4
 // define to enable ScreenPrintf to show current FPS and frame time...
-//#define SCREENPRINTF_SHOWFPS
+#define SCREENPRINTF_SHOWFPS
 
 #ifndef __INTELLISENSE__
 __attribute__((packed)) 
