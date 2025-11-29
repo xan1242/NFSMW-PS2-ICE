@@ -165,6 +165,8 @@ copy /y "$(NMakeOutput)" "!target!"
     <ClCompile Include="bWare.c" />
     <ClCompile Include="cFEng.c" />
     <ClCompile Include="cFEngGameInterface.c" />
+    <ClCompile Include="ePoly.c" />
+    <ClCompile Include="eViewPlatInterface.c" />
     <ClCompile Include="FEDatabase.c" />
     <ClCompile Include="FEng.c" />
     <ClCompile Include="FEPackageManager.c" />
@@ -186,6 +188,8 @@ copy /y "$(NMakeOutput)" "!target!"
     <ClInclude Include="bWare.h" />
     <ClInclude Include="cFEng.h" />
     <ClInclude Include="cFEngGameInterface.h" />
+    <ClInclude Include="ePoly.h" />
+    <ClInclude Include="eViewPlatInterface.h" />
     <ClInclude Include="FEDatabase.h" />
     <ClInclude Include="FEng.h" />
     <ClInclude Include="FEPackageManager.h" />

@@ -60,6 +60,12 @@
     <ClCompile Include="cFEngGameInterface.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="eViewPlatInterface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ePoly.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="linkfile">
@@ -110,6 +116,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cFEngGameInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="eViewPlatInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ePoly.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

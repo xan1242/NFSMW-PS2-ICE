@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include "Attrib.h"
 #include "ActionQueue.h"
+#include "bWare.h"
 
 #if (defined __DEBUG) || (defined __ENABLELOG)
 #define LOG(fmt, ...) gprintf("NFSMW-ICE: " fmt, ##__VA_ARGS__)
@@ -36,6 +37,19 @@ typedef struct _vftbl
     uintptr_t unk;
     uintptr_t addr;
 }vftbl;
+
+typedef struct _ICEPoly
+{
+	bVector3 Vertices[4];
+} ICEPoly;
+
+typedef enum
+{
+	ICETexture_eLogo,
+	ICETexture_eAlpha,
+	ICETexture_eSolid,
+	ICETexture_eNumTextures,
+} ICETexture;
 
 // Functions
 

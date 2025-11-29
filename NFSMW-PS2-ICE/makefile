@@ -18,6 +18,8 @@ FEDatabase.c \
 FEng.c \
 cFEng.c \
 cFEngGameInterface.c \
+eViewPlatInterface.c \
+ePoly.c \
 FEPackageManager.c \
 ScreenPrintf.c \
 NFSMW-ICE.c \
