@@ -15,6 +15,21 @@ const char* ScreenPrintf_FngName = (const char*)0x49C1D0;
 ScreenPrintItem ScreenPrintItemTable[SCREENPRINTF_MAXITEMS];
 int* DoScreenPrintf = (int*)0x525DA4;
 float* RealTimeElapsed = (float*)0x5253F8;
+unsigned int* RealTimeFrames = (unsigned int*)0x5253EC;
+unsigned int last_realtime_frames;
+void(*DisplayDebugScreenPrints)() = (void(*)())(0);
+
+// we need to update these for ICE anyway...
+float* PreviousCpuFrameTime = (float*)0x524AE8;
+float* PreviousGpuFrameTime = (float*)0x524AEC;
+float* PreviousRenderFrameTime = (float*)0x524AFC;
+float* PreviousGpuFrameRate = (float*)0x524AF0;
+float* PreviousCpuFrameRate = (float*)0x524AF4;
+unsigned int* RenderTimingStart = (unsigned int*)0x524B0C;
+unsigned int* RenderTimingEnd = (unsigned int*)0x524B10;
+unsigned int* FrameTimingStartTime = (unsigned int*)0x524B14;
+unsigned int* FrameTimingEndTime = (unsigned int*)0x524B18;
+
 
 void ScreenPrintItem_Reset(ScreenPrintItem* item)
 {
@@ -175,9 +190,60 @@ void ScreenShadowPrintf(int x, int y, const char* fmt, ...)
 	va_end(args);
 }
 
+void DisplayDebugScreenPrints_Hook()
+{
+	float renderFT;
+	float renderFR;
+	float cpuFT;
+	float cpuFR;
+	float dispFR;
+
+	if ((*RealTimeFrames & 8) != (last_realtime_frames & 8))
+	{
+		last_realtime_frames = *RealTimeFrames;
+
+		renderFR = 0.0f;
+		renderFT = bGetTickerDifference(*RenderTimingStart, *RenderTimingEnd);
+		cpuFT = bGetTickerDifference(*RenderTimingStart, *RenderTimingEnd);
+
+		if (renderFT != 0.0f)
+			*PreviousRenderFrameTime = renderFT;
+		if (cpuFT < 0.1f)
+			cpuFT = 0.1f;
+		if (renderFT > 0.1)
+			renderFR = 1000.0f / renderFT;
+
+		*PreviousCpuFrameTime = cpuFT;
+		*PreviousGpuFrameTime = renderFT;
+		*PreviousCpuFrameRate = 1000.0f / cpuFT;
+		*PreviousGpuFrameRate = renderFR;
+	}
+
+#ifdef SCREENPRINTF_SHOWFPS
+	ScreenPrintf(-300, -30, 0.0f, 0xFFFFFFFF, "C: %.2f ms", *PreviousCpuFrameTime);
+	if (*PreviousGpuFrameTime)
+		ScreenPrintf(-200, -30, 0.0f, 0xFFFFFFFF, "G: %.2fms", *PreviousGpuFrameTime);
+
+	// MIN
+	if (*PreviousCpuFrameRate < *PreviousGpuFrameRate)
+		dispFR = *PreviousCpuFrameRate;
+	else
+		dispFR = *PreviousGpuFrameRate;
+
+	ScreenPrintf(-300, -15, 0.0f, 0xFFFFFFFF, "F: %.2f fps", dispFR);
+#endif
+
+
+	return DisplayDebugScreenPrints();
+}
+
 void ScreenPrintf_Init()
 {
 	cFEngGameInterface_Init();
+
+	uintptr_t loc_2EEF50 = 0x2EEF50;
+	DisplayDebugScreenPrints = (void(*)())(minj_GetBranchDestination(loc_2EEF50));
+	minj_MakeCALL(loc_2EEF50, (uintptr_t)&DisplayDebugScreenPrints_Hook);
 }
 
 void ScreenPrintf_PostInit()
