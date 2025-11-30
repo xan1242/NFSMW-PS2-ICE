@@ -15,7 +15,9 @@
 
 // Definitions
 
-#define NFSMW_OPM_DEMO_CRC 0x61D112E4
+#define NFSMW_FRWL_NTSC_DEMO_CRC 0x61D112E4
+#define NFSMW_EADEMODISC_NTSC_DEMO_CRC 0x638B0D32
+
 // define to enable ScreenPrintf to show current FPS and frame time...
 //#define SCREENPRINTF_SHOWFPS
 
@@ -54,7 +56,7 @@ typedef enum
 } ICETexture;
 
 // Functions
-
+unsigned int GetChangelistNum();
 void NFSMW_ICE_Init();
 void NFSMW_ICE_PostInit();
 

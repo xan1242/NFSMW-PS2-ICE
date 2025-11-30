@@ -1,4 +1,4 @@
-gametitle=Need for Speed Most Wanted OPM Demo (007 From Russia with Love NTSC-U)
+gametitle=Need for Speed Most Wanted OPM Demo (EA Demo Disc NTSC-U)
 
 // Fix pause menu crash
 patch=1,EE,002457E8,word,0809160F
@@ -7,26 +7,26 @@ patch=1,EE,002457EC,word,00000000
 [SkipFE]
 author=xan1242
 comment=If enabled, you'll go to Free Roam directly.
-patch=1,EE,00525C70,word,00000001
+patch=1,EE,00525CF0,word,00000001
 // SkipFEPlayerCar
-//patch=1,EE,00525C88,word,00487608
+//patch=1,EE,00525D08,word,00487608
 // SkipFERaceID
-//patch=1,EE,00525C78,double,0000312E312E3032
-//patch=1,EE,00525C80,word,00000074
+//patch=1,EE,525CF8,double,0000312E312E3032
+//patch=1,EE,525D00,word,00000074
 // SkipFEOpponentPresetRide
-//patch=1,EE,00525C90,word,004A2848
+//patch=1,EE,525D10,word,004A2848
 // SkipFEDisableCops
-//patch=1,EE,00525CB0,word,00000001
+//patch=1,EE,525D30,word,00000001
 //copheli
 //patch=1,EE,00487608,double,00696C6568706F63
 // SkipFEOverrideStartPosition
-patch=1,EE,00525CD8,word,00525CE8
+patch=1,EE,525D58,word,525D68
 // SkipFE X
-patch=1,EE,00525CEC,word,4546987b
+patch=1,EE,525D6C,word,4546987b
 // SkipFE Y Neg
-patch=1,EE,00525CF0,word,c4e33c7b
+patch=1,EE,525D70,word,c4e33c7b
 // SkipFE Z Neg
-patch=1,EE,00525CE8,word,c2cbc28f
+patch=1,EE,525D68,word,c2cbc28f
 // use these with SkipFEPlayerCar
 //copmidsize
 //patch=1,EE,00487608,double,697364696D706F63
@@ -46,7 +46,7 @@ patch=1,EE,0024C754,word,00000000
 
 [Go to Main Menu after splash]
 author=xan1242
-patch=1,EE,00521538,word,00494F50
+patch=1,EE,5215B8,word,00494F50
 
 [Disable demo timeout]
 author=xan1242
@@ -66,7 +66,7 @@ patch=1,EE,002F220C,word,00000000
 
 [Disable motion blur (DrawSmear)]
 author=xan1242
-patch=1,EE,004FE694,word,00000000
+patch=1,EE,4FE714,word,00000000
 
 [Disable fog (eAttachFog)]
 author=xan1242
@@ -74,8 +74,8 @@ patch=1,EE,00208D70,word,00000000
 
 [Force Rain]
 author=xan1242
-patch=1,EE,00525CF4,word,00000001
-patch=1,EE,00545EA0,word,3f800000
+patch=1,EE,525D74,word,00000001
+patch=1,EE,545F20,word,3f800000
 
 [Replace Credits with Video options]
 author=xan1242
@@ -93,19 +93,19 @@ comment=A bit broken if you back out of menus during car selection...
 patch=1,EE,004A69E8,double,756E654D6E69614D
 patch=1,EE,004A69F0,double,00000000676E662E
 // car select, fix race start
-patch=1,EE,004D4F04,word,081354B6
-patch=1,EE,004D4F08,word,00000000
+patch=1,EE,004D4F84,word,081354D6
+patch=1,EE,004D4F88,word,00000000
 // unk
-patch=1,EE,004D4F24,word,081354EB
-patch=1,EE,004D4F28,word,00000000
+patch=1,EE,4D4FA4,word,0813550B
+patch=1,EE,4D4FA8,word,00000000
 
 [Skip movies]
 author=xan1242
-patch=1,EE,00525DA8,word,00000001
+patch=1,EE,525E28,word,00000001
 
 [RightStickInFrontend]
 author=xan1242
-patch=1,EE,00525D90,word,00000001
+patch=1,EE,525E10,word,00000001
 
 [Add Debug Car Customize]
 author=xan1242

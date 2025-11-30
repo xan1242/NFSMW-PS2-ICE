@@ -6,5 +6,6 @@
 
 uintptr_t FEDatabase_Get();
 bool FEDatabase_IsWidescreen(uintptr_t db);
+void FEDatabase_Init();
 
 #endif

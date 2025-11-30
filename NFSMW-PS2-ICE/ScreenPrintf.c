@@ -14,22 +14,22 @@
 
 const char* ScreenPrintf_FngName = (const char*)0x49C1D0;
 ScreenPrintItem ScreenPrintItemTable[SCREENPRINTF_MAXITEMS];
-int* DoScreenPrintf = (int*)0x525DA4;
-float* RealTimeElapsed = (float*)0x5253F8;
-unsigned int* RealTimeFrames = (unsigned int*)0x5253EC;
+int* DoScreenPrintf;
+float* RealTimeElapsed;
+unsigned int* RealTimeFrames;
 unsigned int last_realtime_frames;
 void(*DisplayDebugScreenPrints)() = (void(*)())(0);
 
 // we need to update these for ICE anyway...
-float* PreviousCpuFrameTime = (float*)0x524AE8;
-float* PreviousGpuFrameTime = (float*)0x524AEC;
-float* PreviousRenderFrameTime = (float*)0x524AFC;
-float* PreviousGpuFrameRate = (float*)0x524AF0;
-float* PreviousCpuFrameRate = (float*)0x524AF4;
-unsigned int* RenderTimingStart = (unsigned int*)0x524B0C;
-unsigned int* RenderTimingEnd = (unsigned int*)0x524B10;
-unsigned int* FrameTimingStartTime = (unsigned int*)0x524B14;
-unsigned int* FrameTimingEndTime = (unsigned int*)0x524B18;
+float* PreviousCpuFrameTime;
+float* PreviousGpuFrameTime;
+float* PreviousRenderFrameTime;
+float* PreviousGpuFrameRate;
+float* PreviousCpuFrameRate;
+unsigned int* RenderTimingStart;
+unsigned int* RenderTimingEnd;
+unsigned int* FrameTimingStartTime;
+unsigned int* FrameTimingEndTime;
 
 
 void ScreenPrintItem_Reset(ScreenPrintItem* item)
@@ -243,11 +243,42 @@ void DisplayDebugScreenPrints_Hook()
 
 void ScreenPrintf_Init()
 {
-	cFEngGameInterface_Init();
-
 	uintptr_t loc_2EEF50 = 0x2EEF50;
 	DisplayDebugScreenPrints = (void(*)())(minj_GetBranchDestination(loc_2EEF50));
 	minj_MakeCALL(loc_2EEF50, (uintptr_t)&DisplayDebugScreenPrints_Hook);
+
+	uintptr_t loc_234D78 = 0x234D78;
+	DoScreenPrintf = (int*)minj_GetPtr(loc_234D78, loc_234D78 + 4);
+
+	uintptr_t loc_17BAAC = 0x17BAAC;
+	RealTimeElapsed = (float*)minj_GetPtr(loc_17BAAC, loc_17BAAC + 8);
+
+	uintptr_t loc_3A5458 = 0x3A5458;
+	RealTimeFrames = (unsigned int*)minj_GetPtr(loc_3A5458, loc_3A5458 + 8);
+
+	uintptr_t loc_17AF4C = 0x17AF4C;
+	PreviousCpuFrameRate = (float*)minj_GetPtr(loc_17AF4C, loc_17AF4C + 8);
+
+	uintptr_t loc_17AF50 = 0x17AF50;
+	PreviousGpuFrameRate = (float*)minj_GetPtr(loc_17AF50, loc_17AF50 + 8);
+
+	PreviousCpuFrameTime = PreviousCpuFrameRate - 2;
+	PreviousGpuFrameTime = PreviousGpuFrameRate - 2;
+	PreviousRenderFrameTime = PreviousGpuFrameRate + 2;
+
+	uintptr_t loc_2EEF18 = 0x2EEF18;
+	FrameTimingEndTime = (unsigned int*)minj_GetPtr(loc_2EEF18, loc_2EEF18 + 8);
+
+	uintptr_t loc_2EEF1C = 0x2EEF1C;
+	FrameTimingStartTime = (unsigned int*)minj_GetPtr(loc_2EEF1C, loc_2EEF1C + 0x10);
+
+	uintptr_t loc_2EEF38 = 0x2EEF38;
+	RenderTimingStart = (unsigned int*)minj_GetPtr(loc_2EEF38, loc_2EEF38 + 0xC);
+
+	uintptr_t loc_2EEF48 = 0x2EEF48;
+	RenderTimingEnd = (unsigned int*)minj_GetPtr(loc_2EEF48, loc_2EEF48 + 0xC);
+
+	cFEngGameInterface_Init();
 }
 
 void ScreenPrintf_PostInit()

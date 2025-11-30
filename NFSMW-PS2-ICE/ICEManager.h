@@ -8,5 +8,6 @@ void ICEManager_EditorOn();
 void ICEManager_EditorOff();
 bool ICEManager_IsEditorOn();
 //uintptr_t ICEManager_Get();
+void ICEManager_Init();
 
 #endif

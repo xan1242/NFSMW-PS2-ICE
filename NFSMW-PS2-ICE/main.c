@@ -4,9 +4,8 @@
 #include "gprintf.h"
 #include "NFSMW-ICE.h"
 
-int CompatibleCRCList[] = { NFSMW_OPM_DEMO_CRC };
+int CompatibleCRCList[] = { NFSMW_FRWL_NTSC_DEMO_CRC, NFSMW_EADEMODISC_NTSC_DEMO_CRC };
 
-uintptr_t loc_2EF1FC = 0x2EF1FC;
 void(*InitializeEverything)(int argc, char** argv) = (void(*)(int, char**))(0);
 
 void early_init()
@@ -28,6 +27,7 @@ void init()
 
     LOG("NFSMW-ICE Plugin Init\n");
 
+    uintptr_t loc_2EF1FC = 0x2EF1FC;
     uintptr_t pInitializeEverything = minj_GetBranchDestination(loc_2EF1FC);
     InitializeEverything = (void(*)(int, char**))(pInitializeEverything);
     minj_MakeCALL(loc_2EF1FC, (uintptr_t)&InitializeEverything_Hook);

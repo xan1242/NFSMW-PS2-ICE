@@ -1,8 +1,9 @@
 #include "NIS.h"
 #include "NFSMW-ICE.h"
+#include "minjector.h"
 #include <stddef.h>
 
-void** INIS_Singleton = (void**)0x52D8D4;
+void** INIS_Singleton;
 
 void* NIS_GetInstance()
 {
@@ -23,4 +24,10 @@ void* NIS_GetScene(void* instance)
     uintptr_t pFunc = vt[vtidx_GetScene].addr;
 
     return ((void* (*)(void*))(pFunc))(mNISInstance);
+}
+
+void NIS_Init()
+{
+    uintptr_t loc_163A38 = 0x163A38;
+    INIS_Singleton = (void**)minj_GetPtr(loc_163A38, loc_163A38 + 4);
 }

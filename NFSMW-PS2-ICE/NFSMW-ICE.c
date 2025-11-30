@@ -8,6 +8,7 @@
 #include "ScreenPrintf.h"
 #include "eViewPlatInterface.h"
 #include "ePoly.h"
+#include "FEDatabase.h"
 #include "includes/minjector.h"
 
 #define BASEPOLY_HASH 0xC6AFDD7E
@@ -21,10 +22,10 @@
 void*(*GetTextureInfo)(unsigned int name_hash, int return_default_texture_if_not_found, int include_unloaded_textures) = (void*(*)(unsigned int, int, int))(0);
 
 // constants
-const char* CDActionDriveStr = (const char*)0x4872B8;
-const char* CDActionDebugStr = (const char*)0x487488;
-const char* CDActionIceStr = (const char*)0x48E800;
-bool* Tweak_EnableICEAuthoring = (bool*)0x4EA82C;
+const char* CDActionDriveStr;
+const char* CDActionDebugStr;
+const char* CDActionIceStr;
+bool* Tweak_EnableICEAuthoring;
 
 // ICE runs at 30FPS
 const float ScreenPrintfTime = (1.0f / 30.0f);
@@ -255,6 +256,13 @@ asm
 );
 #endif
 
+unsigned int GetChangelistNum()
+{
+    uintptr_t loc_2F50D8 = 0x2F50D8;
+    uintptr_t pChangelist = minj_GetPtr(loc_2F50D8, loc_2F50D8 + 0xC);
+    return *(unsigned int*)(pChangelist + 4);
+}
+
 
 void NFSMW_ICE_Init()
 {
@@ -268,9 +276,24 @@ void NFSMW_ICE_Init()
     uintptr_t loc_14305C = 0x14305C;
     GetTextureInfo = (void* (*)(unsigned int, int, int))(minj_GetBranchDestination(loc_14305C));
 
+    uintptr_t loc_1636DC = 0x1636DC;
+    CDActionDriveStr = (const char*)minj_GetPtr(loc_1636DC, loc_1636DC + 4);
+
+    uintptr_t loc_1683CC = 0x1683CC;
+    CDActionDebugStr = (const char*)minj_GetPtr(loc_1683CC, loc_1683CC + 8);
+
+    uintptr_t loc_1CB928 = 0x1CB928;
+    CDActionIceStr = (const char*)minj_GetPtr(loc_1CB928, loc_1CB928 + 8);
+
+    uintptr_t loc_16923C = 0x16923C;
+    Tweak_EnableICEAuthoring = (bool*)minj_GetPtr(loc_16923C, loc_16923C + 4);
+
     ScreenPrintf_Init();
     eViewPlatInterface_Init();
     ePoly_Init();
+    FEDatabase_Init();
+    ICEManager_Init();
+    NIS_Init();
 
 
     //PrintActionIdEnum();

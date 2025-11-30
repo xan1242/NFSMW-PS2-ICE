@@ -321,3 +321,15 @@ uintptr_t minj_WriteLUI_ADDIU(uintptr_t at, uint32_t value, MIPSRegister reg)
 
     return oldvalue;
 }
+
+uintptr_t minj_GetPtr(uintptr_t loc_hi, uintptr_t loc_lo)
+{
+    // #TODO put something like this in minjector
+    uint16_t hibytes = *(uint16_t*)loc_hi;
+    uint16_t lobytes = *(uint16_t*)loc_lo;
+
+    if (lobytes & 0x8000)
+        hibytes -= 1;
+
+    return (hibytes << 16) | lobytes;
+}

@@ -96,6 +96,7 @@ void minj_MakeCALL(uintptr_t at, uintptr_t dest);
 uintptr_t minj_GetBranchDestination(uintptr_t at);
 uintptr_t minj_DiscoverPtr(uintptr_t start, uintptr_t* outptrLUI, uintptr_t* outptrADDIU, MIPSRegister register_num);
 uintptr_t minj_WriteLUI_ADDIU(uintptr_t at, uint32_t value, MIPSRegister reg);
+uintptr_t minj_GetPtr(uintptr_t loc_hi, uintptr_t loc_lo);
 
 #ifndef MINJECTOR_MINIMAL
 void minj_SetMemsetAddress(uintptr_t addr);
