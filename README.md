@@ -5,6 +5,8 @@ This PCSX2 game plugin restores the hidden ICE editor found within the OPM demo 
 
 It also adds the proper trigger for the Debug World Camera, so you can use that just like on a real debug build!
 
+NOTE: this currently only works with the NTSC-U demo build found in the 007: From Russia in Love.
+
 ## Installation
 
 1. Get [the latest build of PCSX2 Fork with Plugins here](https://github.com/ASI-Factory/PCSX2-Fork-With-Plugins/releases/tag/latest) (MSVC AVX2 build should be good for most people)
