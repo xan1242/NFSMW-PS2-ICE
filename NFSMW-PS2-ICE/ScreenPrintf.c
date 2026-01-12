@@ -207,7 +207,7 @@ void DisplayDebugScreenPrints_Hook()
 		last_realtime_frames = *RealTimeFrames;
 
 		renderFR = 0.0f;
-		renderFT = bGetTickerDifference(*RenderTimingStart, *RenderTimingEnd);
+		renderFT = bGetTickerDifference(*FrameTimingStartTime, *FrameTimingEndTime);
 		cpuFT = bGetTickerDifference(*RenderTimingStart, *RenderTimingEnd);
 
 		if (renderFT != 0.0f)
